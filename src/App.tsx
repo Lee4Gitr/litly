@@ -1,28 +1,35 @@
+
 import { useState } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css'
+import { Page } from './components/layout/page';
+import { Home } from './pages/home';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Page />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+        // children: [
+        //   {
+        //     path: ":pageNumber",
+        //     element: <AllPosts />,
+        //   },
+        //   {
+        //     path: "post/:postId",
+        //     element: <PostView />,
+        //   },
+        // ],
+      },
+    ],
+  },
+]);
 
 function App() {
-  const [count, setCount] = useState<number>(199)
-
-  return (
-    <div className="App">
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <button onClick={() => setCount(0)}>
-          reset
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
