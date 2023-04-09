@@ -1,6 +1,8 @@
 import { Box, Theme } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import { NavBar } from "./navbar";
+import NavBar from "./navbar";
+import { useSession } from "../../hooks/use-session";
+import UserContext from "../../context/user-context";
 
 const styles = {
   appFrame: {
@@ -13,17 +15,20 @@ const styles = {
 }
 
 export const Page = () => {
-
+  const supashipUserInfo = useSession();
   return (
-    <Box sx={{
-      overflowY: 'auto',
-      overflowX: 'hidden',
-      flexDirection: 'column',
-      minHeight: '100vh',
-      display: 'flex'
-    }}>
-      <NavBar />
-      <Outlet />
-    </Box >
+
+    <UserContext.Provider value={supashipUserInfo}>
+      <Box sx={{
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        display: 'flex'
+      }}>
+        <NavBar />
+        <Outlet />
+      </Box >
+    </UserContext.Provider>
   )
 }

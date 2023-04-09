@@ -13,22 +13,16 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
-        // children: [
-        //   {
-        //     path: ":pageNumber",
-        //     element: <AllPosts />,
-        //   },
-        //   {
-        //     path: "post/:postId",
-        //     element: <PostView />,
-        //   },
-        // ],
+        children: [
+
+        ],
       },
     ],
   },
 ]);
 
 function App() {
+
   return <RouterProvider router={router} />;
 }
 
